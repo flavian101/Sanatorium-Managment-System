@@ -1,15 +1,84 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="loginstyles.css">
+</head>
+ <header class="header">
+     <div class="title">
+     <h1> Sanitarium Management System</h1>
+    </div> 
+    </header>
+    
+<body>
+<nav class="navbar">
+  <ul>
+    <li><a href="#" onclick="showLoginForm('doctor')">Doctor</a></li>
+    <li><a href="#" onclick="showLoginForm('triage')">Triage</a></li>
+    <li><a href="#" onclick="showLoginForm('pharmacist')">Pharmacist</a></li>
+    <li><a href="#" onclick="showLoginForm('labAssistant')">Lab Assistant</a></li>
+  </ul>
+</nav>
+
+ <div class="background"></div>
+<div class="container">
+ 
+  <div id="doctor-login" class="login-form" style="display: block;"> <!-- Set display to block -->
+    <h2>Doctor Login</h2>
+    <form action="Doctor.jsp" method="post" id="login-form">
+      <div class="input-group">
+        <input type="text" name="username" id="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+        
+  <div id="triage-login" class="login-form">
+            <h2>Triage Login</h2>
+            <form action="Triage.jsp" method="post" id="login-form">
+      <div class="input-group">
+        <input type="text" name="username" id="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+	</div>
+	
+	
+    <div id="pharmacist-login" class="login-form">
+            <h2>Pharmacist Login</h2>
+            <form action="Pharmacist.jsp" method="post" id="login-form">
+      <div class="input-group">
+        <input type="text" name="username" id="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+        </div>
+        
+   <div id="labAssistant-login" class="login-form">
+            <h2>Lab Assistant Login</h2>
+           <form action="Lab.jsp" method="post" id="login-form">
+      <div class="input-group">
+        <input type="text" name="username" id="username" placeholder="Username" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn">Login</button>
+    </form>
+        </div>
+ 
+  </div>
+<script src="login.js"></script>
+</body>
 </html>
