@@ -27,7 +27,7 @@ public class ReceptionServlet extends HttpServlet {
         Database data = new Database();
         data.submitReception(reception);
         request.setAttribute("receptionist", reception);
-        String url = "/staff/Receptionist.jsp";
+        String url = "/Receptionist.jsp";
         
        
     

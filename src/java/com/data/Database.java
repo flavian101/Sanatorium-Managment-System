@@ -1,17 +1,20 @@
 package com.data;
 
 
+import com.model.Admission;
 import com.model.Doctor;
 import com.model.Lab;
 import com.model.Prescription;
 import com.model.Reception;
 import com.model.Triage;
 import com.model.User;
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -189,36 +192,34 @@ public class Database {
         return doctor;
     }
   
-    public Triage submitTriage(Triage triage) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO triage (AdmissionID, bodyTemp, BloodPressure, Weight, Heartrate, Respiratoryrate, Date, Height) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
-            stmt.setInt   (1, triage.getAdmissionId());
-            stmt.setFloat (2, triage.getBodyTemp());
-            stmt.setFloat (3, triage.getBloodPressure());
-            stmt.setFloat (4, triage.getWeight());
-            stmt.setFloat (5, triage.getHeartRate());
-            stmt.setFloat (6, triage.getRespiratoryRate());
-            stmt.setString(7, triage.getTriageDate());
-            stmt.setFloat (8, triage.getHeight());
-
-            int rowsInserted = stmt.executeUpdate();
-            if (rowsInserted > 0) {
-                System.out.println("A new record has been inserted into the triage table.");
-            } else {
-                System.out.println("Failed to insert a new record into the triage table.");
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-        return triage;
+    public Triage submitTriage(Triage triage, int admissionID) {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
     }
+
+    try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO triage (AdmissionID, bodyTemp, BloodPressure, Heartrate, Respiratoryrate, Date) VALUES (?, ?, ?, ?, ?, NOW())")) {
+        stmt.setInt(1, admissionID); // Set AdmissionID
+        stmt.setFloat(2, triage.getBodyTemp());
+        stmt.setFloat(3, triage.getBloodPressure());
+        stmt.setFloat(4, triage.getHeartRate());
+        stmt.setFloat(5, triage.getRespiratoryRate());
+
+        int rowsInserted = stmt.executeUpdate();
+        if (rowsInserted > 0) {
+            System.out.println("A new record has been inserted into the triage table.");
+        } else {
+            System.out.println("Failed to insert a new record into the triage table.");
+        }
+    } catch (SQLException e) {
+        Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, e);
+    }
+
+    return triage;
+}
+
   
     public Lab submitLab(Lab lab) {
         try {
@@ -289,6 +290,7 @@ public class Database {
     }
     return prescriptionList;
 }
+    
 public List<Reception> getReceptions() {
     List<Reception> receptionList = new ArrayList<>();
     try {
@@ -338,6 +340,32 @@ public Reception getReceptionByRegNumber(String regNumber) {
     }
     return reception;
 }
+public List<Admission> getAdmissions() {
+    List<Admission> admissions = new ArrayList<>();
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM  admissions");
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                Admission admission = new Admission();
+                admission.setAdmissionID(rs.getInt("AdmissionID"));
+                admission.setStudentID(rs.getString("regNumber"));
+                java.sql.Timestamp timestamp = rs.getTimestamp("AdmissionDate");
+                if (timestamp != null) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String admissionDateString = dateFormat.format(timestamp);
+                    admission.setAdmissionDate(admissionDateString);
+                }
+                admissions.add(admission);
+            }
+        }
+    } catch (ClassNotFoundException | SQLException ex) {
+        ex.printStackTrace();
+    }
+    return admissions;
+}
+
 public List<Doctor> getDoctors() {
     List<Doctor> doctorList = new ArrayList<>();
     try {
@@ -374,14 +402,11 @@ public List<Triage> getTriageRecords() {
             ResultSet rs = stmt.executeQuery()) {
         while (rs.next()) {
             Triage triage = new Triage();
-            triage.setAdmissionId(rs.getInt("AdmissionID"));
             triage.setBodyTemp(rs.getFloat("bodyTemp"));
             triage.setBloodPressure(rs.getFloat("BloodPressure"));
-            triage.setWeight(rs.getFloat("Weight"));
             triage.setHeartRate(rs.getFloat("Heartrate"));
             triage.setRespiratoryRate(rs.getFloat("Respiratoryrate"));
             triage.setTriageDate(rs.getString("Date"));
-            triage.setHeight(rs.getFloat("Height"));
             triageList.add(triage);
         }
     } catch (SQLException e) {

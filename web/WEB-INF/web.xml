@@ -8,6 +8,14 @@
         <servlet-name>AdmitServlet</servlet-name>
         <url-pattern>/staff/AdmitServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdmissionServlet</servlet-name>
+        <url-pattern>/staff/AdmissionServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TriageServlet</servlet-name>
+        <url-pattern>/staff/TriageServlet</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Index.jsp</welcome-file>
     </welcome-file-list>
@@ -42,6 +50,14 @@
     <servlet>
         <servlet-name>AdmitServlet</servlet-name>
         <servlet-class>com.servlets.AdmitServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdmissionServlet</servlet-name>
+        <servlet-class>com.servlets.AdmissionServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TriageServlet</servlet-name>
+        <servlet-class>com.servlets.TriageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Reception</servlet-name>

@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
             String redirectPage;
             redirectPage = switch (specialization) {
             case "reception" -> "staff/Receptionist.jsp";
-            case "triage" -> "staff/triage.jsp";
+            case "triage" -> "staff/Triage.jsp";
             case "doctor" -> "staff/doctor.jsp";
             case "labAssistant" -> "staff/labAssistant.jsp";
             case "pharmacist" -> "staff/pharmacy.jsp";
