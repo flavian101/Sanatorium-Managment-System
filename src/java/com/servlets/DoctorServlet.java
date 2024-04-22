@@ -1,9 +1,8 @@
+package com.servlets;
 
 
-
-package com.santorium.servlets;
-
-import com.santorium.user.Doctor;
+import com.data.Database;
+import com.model.Doctor;
 import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -24,7 +23,11 @@ public class DoctorServlet extends HttpServlet {
         doctor.setDiagnosis(request.getParameter("diagnosis"));
         doctor.setRecommendations(request.getParameter("recommendations"));
         doctor.setPrescription(request.getParameter("prescription"));
+        int id = Integer.parseInt(request.getParameter("admissionID"));
 
+        Database data = new Database();
+        data.submitDoctor(doctor,id);
+        
         request.setAttribute("doctor", doctor);
         RequestDispatcher  Dispatcher= request.getServletContext().getRequestDispatcher("Doctor.jsp");
         Dispatcher.forward(request, response);

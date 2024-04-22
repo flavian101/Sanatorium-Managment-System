@@ -10,6 +10,8 @@ package com.model;
  */
 
 public class Triage {
+    private int admissionID;
+    private String studentID;
     private float bodyTemp;
     private float bloodPressure;
     private float heartRate;
@@ -26,6 +28,8 @@ public class Triage {
         this.heartRate = heartRate;
         this.respiratoryRate = respiratoryRate;
         this.triageDate = triageDate;
+        this.admissionID = 0;
+        this.studentID="";
     }
     public float getBodyTemp() {
         return bodyTemp;
@@ -66,4 +70,21 @@ public class Triage {
     public void setTriageDate(String triageDate) {
         this.triageDate = triageDate;
     }
+
+    public int getAdmissionID() {
+        return admissionID;
+    }
+
+   public void setAdmissionID(int admissionID) {
+        this.admissionID = admissionID;
+    }
+
+    public String getStudentID() {
+        return studentID;
+    }
+
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+    
 }

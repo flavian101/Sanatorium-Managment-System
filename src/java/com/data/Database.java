@@ -164,7 +164,7 @@ public class Database {
         return reception;
     }
   
-    public Doctor submitDoctor(Doctor doctor) {
+    public Doctor submitDoctor(Doctor doctor,int AdmissionID) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException ex) {
@@ -172,12 +172,13 @@ public class Database {
         }
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors (observation, examination, diagnosis, recommendation, prescription) VALUES (?, ?, ?, ?, ?)")) {
-            stmt.setString(1, doctor.getObservation());
-            stmt.setString(2, doctor.getExamination());
-            stmt.setString(3, doctor.getDiagnosis());
-            stmt.setString(4, doctor.getRecommendations());
-            stmt.setString(5, doctor.getPrescription());
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors (AdmissionID,observation, examination, diagnosis, recommendation, prescription) VALUES (?,?, ?, ?, ?, ?)")) {
+            stmt.setInt(1, AdmissionID);
+            stmt.setString(2, doctor.getObservation());
+            stmt.setString(3, doctor.getExamination());
+            stmt.setString(4, doctor.getDiagnosis());
+            stmt.setString(5, doctor.getRecommendations());
+            stmt.setString(6, doctor.getPrescription());
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
@@ -398,7 +399,7 @@ public List<Triage> getTriageRecords() {
         Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
     }
     try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM triage");
+            PreparedStatement stmt = conn.prepareStatement("SELECT t.*, a.regNumber, a.admissionDate FROM triage t JOIN admissions a ON t.admissionID = a.admissionID");
             ResultSet rs = stmt.executeQuery()) {
         while (rs.next()) {
             Triage triage = new Triage();
@@ -407,6 +408,9 @@ public List<Triage> getTriageRecords() {
             triage.setHeartRate(rs.getFloat("Heartrate"));
             triage.setRespiratoryRate(rs.getFloat("Respiratoryrate"));
             triage.setTriageDate(rs.getString("Date"));
+            triage.setAdmissionID(rs.getInt("admissionID"));
+            triage.setStudentID(rs.getString("regnumber"));
+            triage.setTriageDate(rs.getString("admissionDate"));
             triageList.add(triage);
         }
     } catch (SQLException e) {
