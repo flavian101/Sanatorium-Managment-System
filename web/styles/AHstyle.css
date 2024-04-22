@@ -1,0 +1,174 @@
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff; /* Updated body background color to white */
+    color: #333; /* Updated text color */
+    line-height: 1.6;
+}
+
+/* Header */
+.header {
+    background-color: #020230;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.logout-btn {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background-color: #4caf50;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.logout-btn:hover {
+    background-color: #45a049;
+}
+
+/* Container */
+.container {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #000;
+    color: #fff;
+    padding: 1rem;
+    width: 200px;
+    height: 90vh; /* Updated height to 100vh (viewport height) */
+    display: flex; /* Added display flex */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items at the top */
+    align-items: flex-start; /* Align items at the top */
+    border-top-right-radius: 50px; /* Added border radius to top-right corner */
+    border-bottom-right-radius: 50px; /* Added border radius to bottom-right corner */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    margin-top: 2rem;
+}
+
+.sidebar-nav li {
+    margin-bottom: 1rem;
+}
+
+.sidebar-nav a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    border: 1px solid #fff; /* Added border */
+    border-radius: 3px;
+}
+
+.sidebar-nav a:hover {
+    background-color: #333;
+}
+
+/* Main content area */
+main {
+    padding: 2rem;
+}
+
+/* Form */
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: calc(100% - 2rem);
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #1a0133;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #020230;
+}
+
+/* Styles for the user table */
+#user-table-container {
+    display: none;
+    margin-top: 20px;
+}
+
+#user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#user-table th,
+#user-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#user-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+#user-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+#success-message {
+    display: none;
+    background-color: #4caf50;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0 auto; /* Center horizontally */
+    position: fixed; /* Position fixed to stay centered */
+    top: 50%; /* Center vertically */
+    left: 0;
+    right: 0;
+    transform: translateY(-50%); /* Adjust vertically */
+    width: 300px; /* Adjust width */
+    z-index: 9999; /* Set z-index to ensure it's above other elements */
+}

@@ -1,72 +1,66 @@
 @charset "UTF-8";
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background-color: transparent;
 }
 
 .background {
+  background: linear-gradient(to right, #020230 0%, #1a0133 50%, #000 100%);
+  background-size: 200% 200%;
+  animation: gradient-animation 20s ease-in-out infinite;
+  overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, #00008B, #FFFFFF);
   z-index: -1;
-  animation: gradientShift 10s infinite alternate;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 100% 100%;
-  }
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
-
 
 .header {
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  padding:10px 10.5%;
-  background: transparent;
+  background-color: transparent;
   color: #fff;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items:  center;
-  z-index: 100;
+  padding: 20px;
+  text-align: center;
 }
-.title{
-	position: relative;
-    display:flex;
-    align-items: center;
-    left:-100px;
+.title {
+    text-align: center;
+    position: fixed;
+    top: 20px; /* Adjust the distance from the top as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
 }
+
 .title h1{
-    font-size: 18px;
+    font-size: 30px;
     display:flex;
-	justify-content: center;
+    justify-content: center;
     align-items:center;
 }
 
-
 .container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
   background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-  width: 350px;
-  animation: fadeIn 0.5s ease-in-out;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0; /* Initially hide the container */
+  animation: fadeIn 0.5s ease-in-out forwards; /* Apply the fade-in animation */
 }
+
 .navbar {
   background-color: transparent;
   color: #fff;
@@ -122,15 +116,18 @@ body {
 .login-container.shake {
   animation: shake 0.5s ease-in-out;
 }
+.error-message {
+        color: red;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -175,16 +172,19 @@ body {
   background-color: #f0f0f0;
 }
 
+
 .btn {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #333;
   color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+
 }
+
 
 .btn:hover {
   background-color: #0056b3;

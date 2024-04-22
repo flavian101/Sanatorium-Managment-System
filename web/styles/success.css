@@ -1,0 +1,54 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 20, 2024, 8:45:15 AM
+    Author     : Sun
+*/
+/* success.css */
+
+/* Add animation keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Body style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container style */
+.container {
+    text-align: center;
+}
+
+/* Success message style */
+.success-message {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease; /* Apply fadeIn animation */
+}
+
+/* Header style */
+.header {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Username style */
+.username {
+    font-size: 18px;
+    color: #009688; /* Teal color */
+    font-weight: bold;
+}
