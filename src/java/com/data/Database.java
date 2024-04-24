@@ -8,7 +8,6 @@ import com.model.Prescription;
 import com.model.Reception;
 import com.model.Triage;
 import com.model.User;
-import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -172,13 +171,11 @@ public class Database {
         }
 
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-             PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors (AdmissionID,observation, examination, diagnosis, recommendation, prescription) VALUES (?,?, ?, ?, ?, ?)")) {
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO doctors (AdmissionID,observation, diagnosis, prescription) VALUES (?,?, ?, ?)")) {
             stmt.setInt(1, AdmissionID);
             stmt.setString(2, doctor.getObservation());
-            stmt.setString(3, doctor.getExamination());
-            stmt.setString(4, doctor.getDiagnosis());
-            stmt.setString(5, doctor.getRecommendations());
-            stmt.setString(6, doctor.getPrescription());
+            stmt.setString(3, doctor.getDiagnosis());
+            stmt.setString(4, doctor.getPrescription());
 
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
@@ -269,7 +266,7 @@ public class Database {
     }
     
     //retrive data
-    public List<Prescription> getPrescriptions() {
+ public List<Prescription> getPrescriptionsWithRegNumber() {
     List<Prescription> prescriptionList = new ArrayList<>();
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -277,13 +274,17 @@ public class Database {
         Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
     }
     try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM prescription");
-            ResultSet rs = stmt.executeQuery()) {
+       PreparedStatement stmt = conn.prepareStatement("SELECT p.*, s.regNumber " +
+                                                 "FROM prescription p " +
+                                                 "JOIN admissions a ON p.admissionID = a.admissionID " +
+                                                 "JOIN student s ON a.studentID = s.id");
+         ResultSet rs = stmt.executeQuery()) {
         while (rs.next()) {
             Prescription prescription = new Prescription();
             prescription.setDrugName(rs.getString("DrugName"));
             prescription.setDosage(rs.getString("Dosage"));
             prescription.setPrescribingPhysician(rs.getString("PrescribingPhysician"));
+            prescription.setRegNumber(rs.getString("regNumber"));
             prescriptionList.add(prescription);
         }
     } catch (SQLException e) {
@@ -291,6 +292,7 @@ public class Database {
     }
     return prescriptionList;
 }
+
     
 public List<Reception> getReceptions() {
     List<Reception> receptionList = new ArrayList<>();

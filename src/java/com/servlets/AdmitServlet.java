@@ -42,10 +42,11 @@ public class AdmitServlet extends HttpServlet {
         Database database = new Database();
         boolean admissionSuccess = database.submitAdmission(regNumber);
         
+       
         if (admissionSuccess) {
-            response.sendRedirect("staff/Receptionist.jsp?message=Admission successful");
+            response.sendRedirect("/Sanitorium_Managment_System/staff/Receptionist.jsp?message=Admission successful");
         } else {
-            response.sendRedirect("staff/Receptionist.jsp?message=Admission failed");
+            response.sendRedirect("/Sanitorium_Managment_System/staff/Receptionist.jsp?message=Admission failed");
         }
         
     }

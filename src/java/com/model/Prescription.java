@@ -12,6 +12,8 @@ public class Prescription {
     private String drugName;
     private String dosage;
     private String prescribingPhysician;
+    private String regNumber;
+    
 
     // Constructors
     public Prescription() {
@@ -47,4 +49,13 @@ public class Prescription {
     public void setPrescribingPhysician(String prescribingPhysician) {
         this.prescribingPhysician = prescribingPhysician;
     }
+
+    public String getRegNumber() {
+        return regNumber;
+    }
+
+    public void setRegNumber(String regNumber) {
+        this.regNumber = regNumber;
+    }
+    
 }

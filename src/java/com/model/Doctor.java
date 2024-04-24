@@ -22,6 +22,11 @@ public class Doctor {
     }
 
     public Doctor() {
+        this.observation = "";
+        this.diagnosis = "";
+        this.examination = "";
+        this.prescription = "";
+        this.recommendations = "";
     }
 
     public String getObservation() {

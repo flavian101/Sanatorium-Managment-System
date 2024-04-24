@@ -1,9 +1,3 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
- */
-
-
 $(document).ready(function() {
     // Function to fetch combined admissions and triage data from the servlet and populate the table
     $.ajax({
@@ -34,7 +28,7 @@ function populateTable(data) {
         } else {
             row += "<td colspan='4'>-</td>"; // If triage data is not available, display "-" in those columns
         }
-        row += "<td><button onclick='fillTriageDetails(" + rowData.admissionID + ", \"" + rowData.studentID + "\", \"" + rowData.admissionDate + "\")'>Process</button></td>" +
+        row += "<td><button class='processButton' onclick='processMedicalForm(" + rowData.admissionID + ", \"" + rowData.studentID + "\", \"" + rowData.admissionDate + "\")'>Process</button></td>" +
                 "</tr>";
         tableBody.append(row);
     });
@@ -48,4 +42,14 @@ function fillTriageDetails(admissionID, studentID, admissionDate) {
     document.getElementById("admissionID").value = admissionID;
     document.getElementById("studentID").value = studentID;
     document.getElementById("admissionDate").value = admissionDate;
+}
+
+function processMedicalForm(admissionID, studentID, admissionDate) {
+    // Fill hidden fields in the medical examination form
+    $('#admissionIDMed').val(admissionID);
+    $('#studentIDMed').val(studentID);
+    $('#admissionDateMed').val(admissionDate);
+    
+    // Show the medical examination form
+    $('#drug-form').show();
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receptionist Information</title>
-    <link rel="stylesheet" href="pharmacycss.css">
+    <link rel="stylesheet" href="../styles/receptionistStyles.css">
     <script>
         function updateDate() {
             var currentDate = new Date();
@@ -19,16 +19,22 @@
 </head>
 <body onload="updateDate()">
 
+<header class="header">
+    <div class="header-content">
+        <h1 class="header-title">Receptionist Section</h1>
+        <a href="../Index.jsp" class="nav-logout-btn">Logout</a>
+    </div>
+</header>
+
 <div class="container">
-    <h2>Receptionist Information</h2>
     <!-- Search Form -->
-    <form action="SearchServlet" method="post">
-        <input type="text" id="searchBar" name="regnumber" placeholder="Search RegNumber...">
-        <input type="submit" value="Search">
+    <form action="SearchServlet" method="post" class="search-form">
+        <input type="text" id="searchBar" name="regnumber" placeholder="Search RegNumber..." class="form-input">
+        <input type="submit" value="Search" class="form-button">
     </form>
     
     <!-- Display Search Results -->
-    <table>
+    <table class="search-results-table">
         <thead>
             <tr>
                 <th>First Name</th>
@@ -51,7 +57,7 @@
                 <td>
                     <form action="AdmitServlet" method="post">
                         <input type="hidden" name="regNumber" value="<%= searchResults.getRegNumber() %>">
-                        <input type="submit" value="Send to Triage">
+                        <button type="submit" class="action-button process-button">Send to Triage</button>
                     </form>
                 </td>
             </tr>
@@ -59,34 +65,44 @@
         </tbody>
     </table>
     
-    <form action="ReceptionServlet" method="post">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" required>
+    <!-- Reception Form -->
+    <form action="ReceptionServlet" method="post" class="form-container">
+        <div class="form-group">
+            <label for="firstname" class="form-label">First Name:</label>
+            <input type="text" id="firstname" name="firstname" required class="form-input">
+        </div>
         
-        <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" required>
+        <div class="form-group">
+            <label for="lastname" class="form-label">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" required class="form-input">
+        </div>
 
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-        </select>
+        <div class="form-group">
+            <label for="gender" class="form-label">Gender:</label>
+            <select id="gender" name="gender" class="form-input">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
         
-        <label for="regnumber">Reg Number:</label><br><br>
-        <input type="text" name="regnumber">
+        <div class="form-group">
+            <label for="regnumber" class="form-label">Reg Number:</label>
+            <input type="text" name="regnumber" class="form-input">
+        </div>
 
-        <!-- Hidden field for Date of Admission -->
-        <input type="date" id="dateOfAdmission" name="dateOfAdmission">
-
+       
         <!-- Rename submit button to "Register" -->
-        <input type="submit" value="Register">
+        <button type="submit" class="submit-button form-button">Register</button>
     </form>
 </div>
 
-<footer>
-    <p style="text-align: center;">&copy; 2024 Sanatorium Pharmacy. All rights reserved.</p>
+<footer class="footer">
+    <div class="footer-content">
+        <p class="footer-text">&copy; 2024 Sanatorium System. All rights reserved. <a href="#" class="footer-link">Terms of Service</a> | <a href="#" class="footer-link">Privacy Policy</a></p>
+    </div>
 </footer>
 
 </body>
 </html>
+

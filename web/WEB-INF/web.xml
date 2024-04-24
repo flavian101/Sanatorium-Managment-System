@@ -20,6 +20,10 @@
         <servlet-name>TriageGetServlet</servlet-name>
         <url-pattern>/staff/TriageGetServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoctorServlet</servlet-name>
+        <url-pattern>/staff/DoctorServlet</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Index.jsp</welcome-file>
     </welcome-file-list>
@@ -66,6 +70,10 @@
     <servlet>
         <servlet-name>TriageGetServlet</servlet-name>
         <servlet-class>com.servlets.TriageGetServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DoctorServlet</servlet-name>
+        <servlet-class>com.servlets.DoctorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Reception</servlet-name>

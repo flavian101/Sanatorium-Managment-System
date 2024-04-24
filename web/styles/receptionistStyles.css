@@ -1,3 +1,12 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 23, 2024, 12:07:17 PM
+    Author     : Sun
+*/
+
 /* Reset and Basics */
 * {
     margin: 0;
@@ -43,38 +52,50 @@ body {
     background-color: #122853;
 }
 
-/* Container */
+/* Main Container */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Form */
-.form-container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 30px;
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
 }
 
-.form-title {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
+/* Search Form */
+.search-form {
+    width: 48%;
 }
 
+/* Search Results Table */
+.search-results-table {
+    width: 48%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    overflow: auto;
+}
+
+/* Reception Form */
+.form-container {
+    width: 48%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Form Group */
 .form-group {
     margin-bottom: 20px;
 }
 
+/* Form Label */
 .form-label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
+/* Form Input */
 .form-input {
     width: 100%;
     padding: 10px;
@@ -83,6 +104,23 @@ body {
     border-radius: 5px;
 }
 
+/* Form Select */
+.form-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%237e7e7e"><path d="M7 10l5 5 5-5H7z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: center;
+}
+
+/* Form Submit Button */
 .form-button {
     display: block;
     width: 100%;
@@ -91,6 +129,7 @@ body {
     color: #fff;
     border: none;
     border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -99,50 +138,15 @@ body {
     background-color: #122853;
 }
 
-/* Search Form */
-.search-form {
-    margin-bottom: 20px;
-}
-
-/* Search Results Table */
-.search-results-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.search-results-table th,
-.search-results-table td {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-.search-results-table th {
-    background-color: #122853;
-    color: #fff;
-}
-
-.search-results-table td {
-    background-color: #f5f7fb;
-}
-
-.search-results-table .table-cell:last-child {
-    text-align: center;
-}
-
 /* Footer */
 .footer {
     background-color: #122853;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    width: 100%;
     position: fixed;
     bottom: 0;
+    width: 100%;
 }
 
 .footer-link {
